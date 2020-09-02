@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.linkingluck.com/midware/resource"
+           xmlns="http://www.linkingluck.com/midware/resource"
+           elementFormDefault="qualified">
+
+    <xs:element name="config">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="format" type="format"/>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="package" type="package"/>
+                </xs:choice>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="class" type="class"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="format">
+        <!-- 默认资源类型 -->
+        <xs:attribute name="type" type="xs:string" use="required"/>
+        <!-- 默认本地资源路径 -->
+        <xs:attribute name="location" type="xs:string" use="required"/>
+        <!-- 默认资源文件后缀 -->
+        <xs:attribute name="suffix" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="package">
+        <xs:attribute name="path" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="class">
+        <xs:attribute name="path" type="xs:string" use="required"/>
+    </xs:complexType>
+</xs:schema>

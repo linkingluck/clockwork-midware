@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:test="http://www.linkingluck.com/midware/resource"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.linkingluck.com/midware/resource http://www.linkingluck.com/midware/resource/resource-1.0.xsd">
+
+    <test:config>
+        <test:format location="com/clockwork/resource/" type="excel" suffix="xlsx"/>
+        <test:package path="package_path"/>
+        <test:class path="class_path"/>
+    </test:config>
+
+</beans>
+
+

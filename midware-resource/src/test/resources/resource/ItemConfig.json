@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "name": "元宝",
+        "quality": 6,
+        "type": 1,
+        "is_use": 0,
+        "expire": 0,
+        "use_level": 1,
+        "use_result": 0,
+        "desc": "元宝",
+        "around": "",
+        "icon": "cash2001",
+        "source_desc": "来自哪里1"
+    },
+    {
+        "id": 2,
+        "name": "绑定元宝",
+        "quality": 6,
+        "type": 2,
+        "is_use": 0,
+        "expire": 0,
+        "use_level": 1,
+        "use_result": 0,
+        "desc": "绑定元宝",
+        "around": "",
+        "icon": "cash2002",
+        "source_desc": "来自哪里2"
+    },
+    {
+        "id": 3,
+        "name": "石币",
+        "quality": 6,
+        "type": 3,
+        "is_use": 0,
+        "expire": 0,
+        "use_level": 1,
+        "use_result": 0,
+        "desc": "游戏中通用货币",
+        "around": "",
+        "icon": "cash2002",
+        "source_desc": "来自哪里3"
+    },
+    {
+        "id": 4,
+        "name": "经验",
+        "quality": 6,
+        "type": 4,
+        "is_use": 0,
+        "expire": 0,
+        "use_level": 1,
+        "use_result": 0,
+        "desc": "人物经验",
+        "around": "",
+        "icon": "cash2002",
+        "source_desc": "来自哪里4"
+    }
+]
