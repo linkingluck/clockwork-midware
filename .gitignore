@@ -1,0 +1,14 @@
+#Editor detritus
+*~
+
+#Database files
+*.mv.db
+*.db
+
+# Maven
+target/
+
+# IDEA
+*.ipr
+*.iml
+.idea/

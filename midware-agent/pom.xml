@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.linkingluck</groupId>
+    <artifactId>midware-agent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <com.linkingluck.midware.version>1.0-SNAPSHOT</com.linkingluck.midware.version>
+        <junit.testng.version>4.11</junit.testng.version>
+        <slf4j.version>1.7.30</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+    </properties>
+
+    <name>vm-agent-热更工具等</name>
+    <url>https://github.com/linkingluck</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>tools</artifactId>
+            <version>1.8</version>
+            <scope>system</scope>
+            <systemPath>C:/Program Files/Java/jdk1.8.0_171/lib/tools.jar</systemPath>
+            <!--<systemPath>${java.home}/../lib/tools.jar</systemPath>-->
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <configuration>
+                        <archive>
+                            <manifestEntries>
+                                <Agent-Class>com.linkingluck.midward.agent.hotupdate.HotUpdateAgent</Agent-Class>
+                                <Can-Redefine-Classes>true</Can-Redefine-Classes>
+                                <Can-Retransform-Classes>true</Can-Retransform-Classes>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                    <version>3.0.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+
+</project>
