@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:event="http://www.linkingluck.com/midware/event"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.linkingluck.com/midware/event http://www.linkingluck.com/midware/event/event-1.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.linkingluck.**.packet">
+        <context:include-filter type="annotation" expression="com.linkingluck.midware.network.anno.SocketPacket"/>
+    </context:component-scan>
+
+    <context:component-scan base-package="com.linkingluck"/>
+
+    <bean class="com.linkingluck.midware.network.tcp.TcpServerTest"/>
+
+    <!--引入事件处理分发消息-->
+    <event:config id="event" basePackage="com.linkingluck.midware.network.tcp">
+    </event:config>
+
+</beans>
