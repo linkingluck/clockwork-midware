@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:test="http://www.linkingluck.com/midware/ormcache"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.linkingluck.com/midware/ormcache http://www.linkingluck.com/midware/ormcache/ormcache-1.0.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <context:component-scan base-package="com.linkingluck.midware.ormcache"/>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost/casual-game?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC" />
+        <property name="username" value="root"></property>
+        <property name="password" value="xing1"></property>
+        <property name="validationQuery" value="select 1"></property>
+        <property name="timeBetweenEvictionRunsMillis" value="5000"></property>
+        <property name="numTestsPerEvictionRun" value="10"></property>
+        <property name="testOnBorrow" value="true"></property>
+        <property name="testWhileIdle" value="true"></property>
+        <property name="initialSize" value="100"></property>
+<!--        <property name="maxActive" value="200"></property>-->
+        <property name="maxIdle" value="5"></property>
+        <property name="minIdle" value="1"></property>
+    </bean>
+
+    <bean id="dataSource-MariaDB53" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.mariadb.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost/casual-game?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC" />
+        <property name="username" value="root"></property>
+        <property name="password" value="xing1"></property>
+        <property name="validationQuery" value="select 1"></property>
+        <property name="timeBetweenEvictionRunsMillis" value="5000"></property>
+        <property name="numTestsPerEvictionRun" value="10"></property>
+        <property name="testOnBorrow" value="true"></property>
+        <property name="testWhileIdle" value="true"></property>
+        <property name="initialSize" value="100"></property>
+        <!--        <property name="maxActive" value="200"></property>-->
+        <property name="maxIdle" value="5"></property>
+        <property name="minIdle" value="1"></property>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource-MariaDB53" />
+        <property name="packagesToScan" value="com.linkingluck.**"></property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.current_session_context_class">thread</prop>
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>-->
+                <prop key="hibernate.dialect">org.hibernate.dialect.MariaDB53Dialect</prop>
+                <prop key="hibernate.cache.use_second_level_cache">false</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">false</prop>
+
+            </props>
+        </property>
+    </bean>
+
+    <!-- 配置Spring声明式事务 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="querier" class="com.linkingluck.midware.ormcache.orm.hibernate.HibernateQuerier">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="accessor" class="com.linkingluck.midware.ormcache.orm.hibernate.HibernateAccessor">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <test:config id="config">
+        <test:accessor ref="accessor"/>
+        <test:querier ref="querier"/>
+        <test:constants>
+            <test:constant name="whatIs" size="1"/>
+        </test:constants>
+        <test:persist type="TIMING" config="1">
+            <test:persister name="time" type="TIMING" config="1"/>
+        </test:persist>
+        <test:entity>
+            <test:package name="com.linkingluck.midware.ormcache"/>
+        </test:entity>
+    </test:config>
+
+</beans>
+
+
