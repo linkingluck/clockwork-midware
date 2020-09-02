@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.linkingluck.com/midware/event"
+           xmlns="http://www.linkingluck.com/midware/event"
+           elementFormDefault="qualified">
+
+    <xs:element name="config">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0">
+                    <xs:element name="eventChoicer" type="eventChoicer"/>
+                </xs:choice>
+            </xs:sequence>
+
+            <xs:attribute name="id" type="xs:string"/>
+            <xs:attribute name="basePackage" type="xs:string"/>
+            <xs:attribute name="eventBus" type="xs:string" default="com.linkingluck.midware.event.core.EventBusManager"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="eventChoicer">
+        <!-- 默认引用类型 -->
+        <xs:attribute name="ref" type="xs:string" use="required"/>
+    </xs:complexType>
+</xs:schema>
